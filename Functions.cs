@@ -5,22 +5,15 @@ using System.IO;
 using log4net;
 using Microsoft.Azure.WebJobs;
 using System.Linq;
-using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Core;
-using Microsoft.Azure.ServiceBus.InteropExtensions;
 using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json;
 using RestSharp;
-using ExceptionReceivedEventArgs = Microsoft.Azure.ServiceBus.ExceptionReceivedEventArgs;
-using MessageReceiver = Microsoft.ServiceBus.Messaging.MessageReceiver;
-using MessageSender = Microsoft.Azure.ServiceBus.Core.MessageSender;
-using ReceiveMode = Microsoft.Azure.ServiceBus.ReceiveMode;
-using QueueClient = Microsoft.Azure.ServiceBus.QueueClient;
 
 namespace SyncTest
 {
