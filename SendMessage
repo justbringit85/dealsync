@@ -1,0 +1,58 @@
+using System;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Azure.ServiceBus;
+
+namespace Sync.Queue
+{
+    public interface ISendMessage
+    {
+        Task<bool> SendMessageToQueue(string message);
+    }
+    public class SendMessage : ISendMessage
+    {
+        private static IConfigurator Configurator => new Configurator();
+        static IQueueClient queueClient;
+
+        public SendMessage()
+        {
+            
+        }
+
+        public async Task<bool> SendMessageToQueue(string message)
+        {
+            try
+            {
+
+                queueClient = new QueueClient(Configurator.GetConfigSettings("ConnectionString"), Configurator.GetConfigSettings("QueueName"));
+
+                var messageObj = new Message(Encoding.UTF8.GetBytes(message))
+                {
+                    TimeToLive = TimeSpan.FromDays(14),
+                    PartitionKey = message
+                };
+         
+                await queueClient.SendAsync(messageObj);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+                return false;
+            }
+        }
+
+
+        public struct Connections
+        {
+            public const string ServiceBusQueue = "ConnectionString";
+        }
+
+        public struct Queue
+        {
+            public const string QueueName = "QueueName";
+        }
+    }
+}
