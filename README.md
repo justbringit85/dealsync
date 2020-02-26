@@ -1,6 +1,6 @@
 # synctest
 
-Project entails putting a message on the service bus queue, having a azure web job run and call the functions.cs file to then pick up the message off the service bus queue and process it. 
+Project entails putting a message on the service bus queue (SendMessage), having a azure web job run (Program) and call the functions.cs file to then pick up the message off the service bus queue and process it. 
 
 The issue I'm having is the message takes too long to process, usually more than 20 minutes, then the lock gets removed from the message in the queue so the next instance of the jobs picks it up as the first attempt is still running. 
 
