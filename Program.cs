@@ -8,24 +8,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using log4net;
 using log4net.Config;
-using Microsoft.Azure.Documents;
-using Microsoft.Azure.Documents.Client;
-using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
-using Newtonsoft.Json;
-using RestSharp;
-using StructureMap;
-using ExceptionReceivedEventArgs = Microsoft.Azure.ServiceBus.ExceptionReceivedEventArgs;
-using QueueClient = Microsoft.Azure.ServiceBus.QueueClient;
 
-namespace DealSync
+namespace SyncTest
 {
     class Program
     {
-
-        static QueueClient queueClient;
         static void Main()
         {
            try
@@ -51,7 +41,7 @@ namespace DealSync
 
                 var host = new JobHost(config);
 
-                //host.CallAsync(typeof(Functions).GetMethod("SyncDeals"));
+                //host.CallAsync(typeof(Functions).GetMethod("SyncTest"));
 
                 host.RunAndBlock();
             }
